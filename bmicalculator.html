@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BMI Calculator</title>
+    <link href="https://fonts.googleapis.com/css2?family=PT+Mono&display=swap" rel="stylesheet">
+
+<style>
+    body{
+        background-color: #628078;
+    }
+    #mainbox{
+        text-align: center;
+        margin:auto;
+        padding: 10px;
+        font-family: 'PT Mono', monospace;
+        background-color: #6B7A8F;
+        width: 70%;
+        color: #F7C331;
+        margin-top: 30px;
+        border-radius: 10px;
+        box-shadow: 5px 10px 8px #888888;
+    }
+    #mainbox *{
+        margin-top: 10px;
+    }
+    input[type='button']{
+        border: none;
+        padding: 10px;
+        font-style: inherit;
+    }
+
+
+</style>
+</head>
+<body>
+    <div id="mainbox">
+        <h1>BMI Calculator</h1>
+        <form>
+            <label for="yourH">Your Height(cm):</label>
+            <input type="number" name="" id="heightCm" required><br>
+            <label for="yourW">Your Weight(kg):</label>
+            <input type="number" name="" id="weightKg" required><br>
+            <input type="button" value="Submit" onclick="bmiCalculate()">
+            <h2 id="resultnum"></h2>
+            <h2 id="meaning"></h2>
+        </form>
+    </div>
+<script>
+
+       function bmiCalculate(){
+            var firstVal = Number(document.getElementById('heightCm').value);
+            var secondVal = Number(document.getElementById('weightKg').value);
+            var result = (secondVal/(Math.pow((firstVal/100), 2))).toFixed(2);
+           document.getElementById('resultnum').innerHTML = `Your result is ${result}`;
+           var mean;
+           if(firstVal==0||secondVal==0){
+               window.alert('Enter valid values');
+               
+               return;
+
+           }else if(result<18.5){
+               mean = 'Below Normal Weight'
+           }else if(result >=18.5 && result <=25){
+               mean = 'Normal Weight';
+           }else if(result>25 && result <30){
+               mean = 'Overweight;'
+           }else if(result >= 30 && result < 35){
+               mean = 'Class I Obesity';
+           }else if(result>=35 && result<40){
+               mean = 'Class II Obesity';
+           }else{
+               mean = 'Class III Obesity';
+           }
+
+           document.getElementById('meaning').innerHTML = mean;
+
+
+       }
+</script>
+</body>
+</html>
